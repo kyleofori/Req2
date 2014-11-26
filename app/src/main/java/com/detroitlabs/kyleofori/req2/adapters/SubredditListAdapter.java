@@ -8,12 +8,12 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.detroitlabs.kyleofori.req2.R;
-import com.detroitlabs.kyleofori.req2.models.RedditEntry;
+import com.detroitlabs.kyleofori.req2.models.KhanAcademyPlaylist;
 
 /**
  * Created by bobbake4 on 11/13/14.
  */
-public class SubredditListAdapter extends ArrayAdapter<RedditEntry> {
+public class SubredditListAdapter extends ArrayAdapter<KhanAcademyPlaylist> {
 
     public SubredditListAdapter(Context context) {
         super(context, R.layout.include_reddit_entry_row);
@@ -33,7 +33,7 @@ public class SubredditListAdapter extends ArrayAdapter<RedditEntry> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        RedditEntry redditEntry = getItem(position);
+        KhanAcademyPlaylist redditEntry = getItem(position);
 
         viewHolder.titleTextView.setText(redditEntry.getTitle());
         viewHolder.authorTextView.setText(redditEntry.getAuthor());

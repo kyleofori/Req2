@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.detroitlabs.kyleofori.req2.R;
-import com.detroitlabs.kyleofori.req2.models.RedditEntry;
+import com.detroitlabs.kyleofori.req2.models.KhanAcademyPlaylist;
 
 /**
  * Created by bobbake4 on 11/13/14.
@@ -17,7 +17,7 @@ public class RedditDetailFragment extends Fragment {
 
     private static final String ARG_REDDIT_ENTRY = "arg_reddit_entry";
 
-    public static RedditDetailFragment newInstance(RedditEntry redditEntry) {
+    public static RedditDetailFragment newInstance(KhanAcademyPlaylist redditEntry) {
 
         Bundle args = new Bundle();
         args.putParcelable(ARG_REDDIT_ENTRY, redditEntry);
@@ -45,7 +45,7 @@ public class RedditDetailFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        RedditEntry redditEntry = getArguments().getParcelable(ARG_REDDIT_ENTRY);
+        KhanAcademyPlaylist redditEntry = getArguments().getParcelable(ARG_REDDIT_ENTRY);
 
         if (redditEntry != null) {
 

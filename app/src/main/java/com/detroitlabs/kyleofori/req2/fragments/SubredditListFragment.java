@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import com.detroitlabs.kyleofori.req2.adapters.SubredditListAdapter;
 import com.detroitlabs.kyleofori.req2.interfaces.FragmentController;
-import com.detroitlabs.kyleofori.req2.models.RedditEntry;
+import com.detroitlabs.kyleofori.req2.models.KhanAcademyPlaylist;
 import com.detroitlabs.kyleofori.req2.khanacademyapi.KhanAcademyApi;
 import com.detroitlabs.kyleofori.req2.khanacademyapi.KhanAcademyApiCallback;
 
@@ -67,7 +67,7 @@ public class SubredditListFragment extends ListFragment implements KhanAcademyAp
 
         if (getActivity() instanceof FragmentController) {
 
-            RedditEntry redditEntry = (RedditEntry) listView.getAdapter().getItem(position);
+            KhanAcademyPlaylist redditEntry = (KhanAcademyPlaylist) listView.getAdapter().getItem(position);
             RedditDetailFragment redditDetailFragment = RedditDetailFragment.newInstance(redditEntry);
 
             FragmentController fragmentController = (FragmentController) getActivity();
@@ -82,7 +82,7 @@ public class SubredditListFragment extends ListFragment implements KhanAcademyAp
     @Override
     public void onSuccess(JSONObject response) {
         if (isAdded()) {
-            List<RedditEntry> redditEntries = RedditEntry.parseJSONObject(response);
+            List<KhanAcademyPlaylist> redditEntries = KhanAcademyPlaylist.parseJSONObject(response);
             subredditListAdapter.clear();
             subredditListAdapter.addAll(redditEntries);
         }
