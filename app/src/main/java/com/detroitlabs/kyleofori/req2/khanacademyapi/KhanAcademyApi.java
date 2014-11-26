@@ -17,7 +17,7 @@ import java.net.URLConnection;
  */
 public class KhanAcademyApi {
 
-    private static final String ROOT_URL = "www.reddit.com";
+    private static final String ROOT_URL = "www.khanacademy.org";
 
     //Singleton!
     private static KhanAcademyApi khanAcademyApi;
@@ -38,9 +38,9 @@ public class KhanAcademyApi {
         Uri uri = new Uri.Builder()
                 .scheme("http")
                 .authority(ROOT_URL)
-                .appendPath("r")
+                .appendPath("api")
+                .appendPath("v1")
                 .appendPath(subreddit)
-                .appendPath(".json")
                 .build();
 
         new LoadDataInBackground(callback).execute(uri);
@@ -64,10 +64,10 @@ public class KhanAcademyApi {
 
     private class LoadDataInBackground extends AsyncTask<Uri, Void, JSONObject> {
 
-        private KhanAcademyApiCallback redditApiCallback;
+        private KhanAcademyApiCallback khanAcademyApiCallback;
 
-        private LoadDataInBackground(KhanAcademyApiCallback redditApiCallback) {
-            this.redditApiCallback = redditApiCallback;
+        private LoadDataInBackground(KhanAcademyApiCallback khanAcademyApiCallback) {
+            this.khanAcademyApiCallback = khanAcademyApiCallback;
         }
 
         @Override
@@ -86,9 +86,9 @@ public class KhanAcademyApi {
         @Override
         protected void onPostExecute(JSONObject result) {
             if (result != null) {
-                this.redditApiCallback.onSuccess(result);
+                this.khanAcademyApiCallback.onSuccess(result);
             } else {
-                this.redditApiCallback.onError();
+                this.khanAcademyApiCallback.onError();
             }
         }
     }
