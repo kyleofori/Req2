@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Req2</string>
+    <string name="subreddit_entry_text">Enter a Subreddit to load:</string>
+    <string name="subreddit_hint">Subreddit</string>
+    <string name="subreddit_entry_error">Subreddit cannot be empty</string>
+    <string name="submit_button_text">Submit</string>
+    <string name="action_settings">Settings</string>
+
+</resources>
