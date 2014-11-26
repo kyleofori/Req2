@@ -39,7 +39,7 @@ public class SubredditListFragment extends ListFragment implements KhanAcademyAp
     }
 
     private SubredditListAdapter subredditListAdapter;
-    private KhanAcademyApi redditApi = KhanAcademyApi.getRedditApi();
+    private KhanAcademyApi redditApi = KhanAcademyApi.getKhanAcademyApi();
     private Timer refreshTimer;
 
     @Override

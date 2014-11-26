@@ -19,14 +19,15 @@ public class KhanAcademyApi {
 
     private static final String ROOT_URL = "www.reddit.com";
 
-    private static KhanAcademyApi redditApi;
+    //Singleton!
+    private static KhanAcademyApi khanAcademyApi;
 
-    public static KhanAcademyApi getRedditApi() {
-        if (redditApi == null) {
-            redditApi = new KhanAcademyApi();
+    public static KhanAcademyApi getKhanAcademyApi() {
+        if (khanAcademyApi == null) {
+            khanAcademyApi = new KhanAcademyApi();
         }
 
-        return redditApi;
+        return khanAcademyApi;
     }
 
     private KhanAcademyApi() {
