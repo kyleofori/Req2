@@ -36,7 +36,8 @@ public class SubredditListAdapter extends ArrayAdapter<KhanAcademyPlaylist> {
         KhanAcademyPlaylist redditEntry = getItem(position);
 
         viewHolder.titleTextView.setText(redditEntry.getTitle());
-        viewHolder.authorTextView.setText(redditEntry.getDescription());
+        viewHolder.kaUrlTextView.setText(redditEntry.getKaUrl());
+        viewHolder.descriptionTextView.setText(redditEntry.getDescription());
 
         return convertView;
     }
@@ -44,11 +45,14 @@ public class SubredditListAdapter extends ArrayAdapter<KhanAcademyPlaylist> {
     private static class ViewHolder {
 
         private TextView titleTextView;
-        private TextView authorTextView;
+        private TextView kaUrlTextView;
+        private TextView descriptionTextView;
 
         public ViewHolder(View rootView) {
             this.titleTextView = (TextView) rootView.findViewById(R.id.titleTextView);
-            this.authorTextView = (TextView) rootView.findViewById(R.id.authorTextView);
+            this.kaUrlTextView = (TextView) rootView.findViewById(R.id.kaUrlTextView);
+            this.descriptionTextView = (TextView) rootView.findViewById(R.id.descriptionTextView);
+
         }
 
     }
