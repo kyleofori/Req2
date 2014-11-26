@@ -11,7 +11,9 @@ import com.detroitlabs.kyleofori.req2.interfaces.FragmentController;
 import com.detroitlabs.kyleofori.req2.models.KhanAcademyPlaylist;
 import com.detroitlabs.kyleofori.req2.khanacademyapi.KhanAcademyApi;
 import com.detroitlabs.kyleofori.req2.khanacademyapi.KhanAcademyApiCallback;
+import com.detroitlabs.kyleofori.req2.parsers.KhanAcademyJSONParser;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -80,9 +82,9 @@ public class SubredditListFragment extends ListFragment implements KhanAcademyAp
     }
 
     @Override
-    public void onSuccess(JSONObject response) {
+    public void onSuccess(JSONArray response) {
         if (isAdded()) {
-            List<KhanAcademyPlaylist> redditEntries = KhanAcademyPlaylist.parseJSONObject(response);
+            List<KhanAcademyPlaylist> redditEntries = KhanAcademyJSONParser.parseJSONObject(response);
             subredditListAdapter.clear();
             subredditListAdapter.addAll(redditEntries);
         }
