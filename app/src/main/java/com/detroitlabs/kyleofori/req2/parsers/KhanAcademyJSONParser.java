@@ -17,17 +17,18 @@ public class KhanAcademyJSONParser {
     public static List<KhanAcademyPlaylist> parseJSONObject(JSONArray jsonArray) {
 
         try {
-            JSONArray playlistsArray = jsonArray.getJSONArray(0);
-
             List<KhanAcademyPlaylist> khanAcademyPlaylists = new ArrayList<KhanAcademyPlaylist>();
 
-            for (int index = 0; index < playlistsArray.length(); index++) {
+            for (int index = 0; index < jsonArray.length(); index++) {
 
-                JSONObject playlistObject = playlistsArray.getJSONObject(index);
+                JSONObject playlistObject = jsonArray.getJSONObject(index);
+                String title = playlistObject.optString("title", "unknown title");
+                String kaUrl = playlistObject.optString("ka_url", "unknown url");
+                String description = playlistObject.optString("description", "unknown description");
 
-                KhanAcademyPlaylist newKhanAcademyPlaylist = new KhanAcademyPlaylist(playlistObject);
+                KhanAcademyPlaylist currentKhanAcademyPlaylist = new KhanAcademyPlaylist(title, kaUrl, description);
 
-                khanAcademyPlaylists.add(newKhanAcademyPlaylist);
+                khanAcademyPlaylists.add(currentKhanAcademyPlaylist);
             }
 
             return khanAcademyPlaylists;
@@ -35,4 +36,5 @@ public class KhanAcademyJSONParser {
             return new ArrayList<KhanAcademyPlaylist>();
         }
     }
+
 }

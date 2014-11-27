@@ -28,15 +28,15 @@ public class RedditDetailFragment extends Fragment {
         return redditDetailFragment;
     }
 
-    private TextView authorTextView, titleTextView, contentTextView;
+    private TextView titleTextView, kaUrlTextView, descriptionTextView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_reddit_detail, container, false);
 
-        authorTextView = (TextView) view.findViewById(R.id.authorTextView);
         titleTextView = (TextView) view.findViewById(R.id.titleTextView);
-        contentTextView = (TextView) view.findViewById(R.id.contentTextView);
+        kaUrlTextView = (TextView) view.findViewById(R.id.kaUrlTextView);
+        descriptionTextView = (TextView) view.findViewById(R.id.descriptionTextView);
 
         return view;
     }
@@ -49,9 +49,9 @@ public class RedditDetailFragment extends Fragment {
 
         if (redditEntry != null) {
 
-            authorTextView.setText(redditEntry.getAuthor());
             titleTextView.setText(redditEntry.getTitle());
-            contentTextView.setText(redditEntry.isSelf() ? redditEntry.getSelftext() : redditEntry.getUrl());
+            kaUrlTextView.setText(redditEntry.getKaUrl());
+            descriptionTextView.setText(redditEntry.getDescription());
 
         } else {
             throw new IllegalStateException("Must supply a RedditEntry to RedditDetailFragment");

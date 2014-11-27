@@ -3,8 +3,8 @@ package com.detroitlabs.kyleofori.req2.khanacademyapi;
 import android.net.Uri;
 import android.os.AsyncTask;
 
+import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -46,7 +46,7 @@ public class KhanAcademyApi {
         new LoadDataInBackground(callback).execute(uri);
     }
 
-    private JSONObject getJSONObjectFromUri(Uri uri) throws IOException, JSONException {
+    private JSONArray getJSONObjectFromUri(Uri uri) throws IOException, JSONException {
         URLConnection httpURLConnection = new URL(uri.toString()).openConnection();
 
         InputStream inputStream = httpURLConnection.getInputStream();
@@ -59,10 +59,10 @@ public class KhanAcademyApi {
             stringBuilder.append((char)bytesRead);
         }
 
-        return new JSONObject(stringBuilder.toString());
+        return new JSONArray(stringBuilder.toString());
     }
 
-    private class LoadDataInBackground extends AsyncTask<Uri, Void, JSONObject> {
+    private class LoadDataInBackground extends AsyncTask<Uri, Void, JSONArray> {
 
         private KhanAcademyApiCallback khanAcademyApiCallback;
 
@@ -71,7 +71,7 @@ public class KhanAcademyApi {
         }
 
         @Override
-        protected JSONObject doInBackground(Uri... params) {
+        protected JSONArray doInBackground(Uri... params) {
 
             try {
                 Uri uri = params[0];
@@ -84,7 +84,7 @@ public class KhanAcademyApi {
         }
 
         @Override
-        protected void onPostExecute(JSONObject result) {
+        protected void onPostExecute(JSONArray result) {
             if (result != null) {
                 this.khanAcademyApiCallback.onSuccess(result);
             } else {
