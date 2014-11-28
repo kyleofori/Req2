@@ -33,11 +33,11 @@ public class SubredditListAdapter extends ArrayAdapter<KhanAcademyPlaylist> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        KhanAcademyPlaylist redditEntry = getItem(position);
+        KhanAcademyPlaylist khanAcademyPlaylist = getItem(position);
 
-        viewHolder.titleTextView.setText(redditEntry.getTitle());
-        viewHolder.kaUrlTextView.setText(redditEntry.getKaUrl());
-        viewHolder.descriptionTextView.setText(redditEntry.getDescription());
+        viewHolder.titleTextView.setText(khanAcademyPlaylist.getTitle());
+        viewHolder.kaUrlTextView.setText(khanAcademyPlaylist.getKaUrl());
+        viewHolder.descriptionTextView.setText(khanAcademyPlaylist.getDescription());
 
         return convertView;
     }
