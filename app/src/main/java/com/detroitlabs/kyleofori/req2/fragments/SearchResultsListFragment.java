@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 public class SearchResultsListFragment extends ListFragment implements KhanAcademyApiCallback {
 
     private static final String ARG_SEARCH_TERM = "arg_search_term";
-    private static final long REFRESH_INTERVAL = TimeUnit.MINUTES.toMillis(1);
+    private static final long REFRESH_INTERVAL = TimeUnit.SECONDS.toMillis(6);
 
     public static SearchResultsListFragment newInstance(String searchTerm) {
 

@@ -2,6 +2,7 @@ package com.detroitlabs.kyleofori.req2.khanacademyapi;
 
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -75,6 +76,7 @@ public class KhanAcademyApi {
 
             try {
                 Uri uri = params[0];
+                Log.e("hey", "made another call");
                 return getJSONObjectFromUri(uri);
             } catch (IOException e) {
                 return null;
