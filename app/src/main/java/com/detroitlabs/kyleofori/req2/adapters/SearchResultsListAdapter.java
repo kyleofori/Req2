@@ -13,10 +13,10 @@ import com.detroitlabs.kyleofori.req2.models.KhanAcademyPlaylist;
 /**
  * Created by bobbake4 on 11/13/14.
  */
-public class SubredditListAdapter extends ArrayAdapter<KhanAcademyPlaylist> {
+public class SearchResultsListAdapter extends ArrayAdapter<KhanAcademyPlaylist> {
 
-    public SubredditListAdapter(Context context) {
-        super(context, R.layout.include_reddit_entry_row);
+    public SearchResultsListAdapter(Context context) {
+        super(context, R.layout.list_item_playlist_row);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class SubredditListAdapter extends ArrayAdapter<KhanAcademyPlaylist> {
         ViewHolder viewHolder;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.include_reddit_entry_row, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_playlist_row, parent, false);
 
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);

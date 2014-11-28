@@ -6,17 +6,17 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.detroitlabs.kyleofori.req2.R;
-import com.detroitlabs.kyleofori.req2.fragments.SubredditListFragment;
+import com.detroitlabs.kyleofori.req2.fragments.SearchResultsListFragment;
 import com.detroitlabs.kyleofori.req2.interfaces.FragmentController;
 
-public class RedditNavigationActivity extends Activity implements FragmentController {
+public class KhanAcademyNavigationActivity extends Activity implements FragmentController {
 
     public static final String EXTRA_SUBREDDIT = "extra_subreddit";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reddit_navigation);
+        setContentView(R.layout.activity_khan_academy_navigation);
         loadSubredditFragment();
     }
 
@@ -46,10 +46,10 @@ public class RedditNavigationActivity extends Activity implements FragmentContro
 
         if (subreddit != null) {
 
-            SubredditListFragment subredditListFragment = SubredditListFragment.newInstance(subreddit);
+            SearchResultsListFragment searchResultsListFragment = SearchResultsListFragment.newInstance(subreddit);
 
             getFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentContainer, subredditListFragment)
+                    .replace(R.id.fragmentContainer, searchResultsListFragment)
                     .commit();
 
         } else {

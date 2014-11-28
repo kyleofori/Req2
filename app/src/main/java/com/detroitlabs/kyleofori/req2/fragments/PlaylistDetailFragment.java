@@ -13,26 +13,26 @@ import com.detroitlabs.kyleofori.req2.models.KhanAcademyPlaylist;
 /**
  * Created by bobbake4 on 11/13/14.
  */
-public class RedditDetailFragment extends Fragment {
+public class PlaylistDetailFragment extends Fragment {
 
     private static final String ARG_REDDIT_ENTRY = "arg_reddit_entry";
 
-    public static RedditDetailFragment newInstance(KhanAcademyPlaylist redditEntry) {
+    public static PlaylistDetailFragment newInstance(KhanAcademyPlaylist redditEntry) {
 
         Bundle args = new Bundle();
         args.putParcelable(ARG_REDDIT_ENTRY, redditEntry);
 
-        RedditDetailFragment redditDetailFragment = new RedditDetailFragment();
-        redditDetailFragment.setArguments(args);
+        PlaylistDetailFragment playlistDetailFragment = new PlaylistDetailFragment();
+        playlistDetailFragment.setArguments(args);
 
-        return redditDetailFragment;
+        return playlistDetailFragment;
     }
 
     private TextView titleTextView, kaUrlTextView, descriptionTextView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_reddit_detail, container, false);
+        View view = inflater.inflate(R.layout.fragment_playlist_detail, container, false);
 
         titleTextView = (TextView) view.findViewById(R.id.titleTextView);
         kaUrlTextView = (TextView) view.findViewById(R.id.kaUrlTextView);

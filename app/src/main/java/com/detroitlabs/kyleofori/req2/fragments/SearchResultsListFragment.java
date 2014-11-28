@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.detroitlabs.kyleofori.req2.adapters.SubredditListAdapter;
+import com.detroitlabs.kyleofori.req2.adapters.SearchResultsListAdapter;
 import com.detroitlabs.kyleofori.req2.interfaces.FragmentController;
 import com.detroitlabs.kyleofori.req2.models.KhanAcademyPlaylist;
 import com.detroitlabs.kyleofori.req2.khanacademyapi.KhanAcademyApi;
@@ -14,7 +14,6 @@ import com.detroitlabs.kyleofori.req2.khanacademyapi.KhanAcademyApiCallback;
 import com.detroitlabs.kyleofori.req2.parsers.KhanAcademyJSONParser;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.List;
 import java.util.Timer;
@@ -24,31 +23,31 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by bobbake4 on 11/13/14.
  */
-public class SubredditListFragment extends ListFragment implements KhanAcademyApiCallback {
+public class SearchResultsListFragment extends ListFragment implements KhanAcademyApiCallback {
 
-    private static final String ARG_SUBREDDIT = "arg_subreddit";
+    private static final String ARG_SEARCH_TERM = "arg_search_term";
     private static final long REFRESH_INTERVAL = TimeUnit.MINUTES.toMillis(1);
 
-    public static SubredditListFragment newInstance(String subreddit) {
+    public static SearchResultsListFragment newInstance(String searchTerm) {
 
         Bundle args = new Bundle();
-        args.putString(ARG_SUBREDDIT, subreddit);
+        args.putString(ARG_SEARCH_TERM, searchTerm);
 
-        SubredditListFragment subredditListFragment = new SubredditListFragment();
-        subredditListFragment.setArguments(args);
+        SearchResultsListFragment searchResultsListFragment = new SearchResultsListFragment();
+        searchResultsListFragment.setArguments(args);
 
-        return subredditListFragment;
+        return searchResultsListFragment;
     }
 
-    private SubredditListAdapter subredditListAdapter;
-    private KhanAcademyApi redditApi = KhanAcademyApi.getKhanAcademyApi();
+    private SearchResultsListAdapter searchResultsListAdapter;
+    private KhanAcademyApi khanAcademyApi = KhanAcademyApi.getKhanAcademyApi();
     private Timer refreshTimer;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        subredditListAdapter = new SubredditListAdapter(getActivity());
-        setListAdapter(subredditListAdapter);
+        searchResultsListAdapter = new SearchResultsListAdapter(getActivity());
+        setListAdapter(searchResultsListAdapter);
         loadRedditEntries();
     }
 
@@ -69,11 +68,11 @@ public class SubredditListFragment extends ListFragment implements KhanAcademyAp
 
         if (getActivity() instanceof FragmentController) {
 
-            KhanAcademyPlaylist redditEntry = (KhanAcademyPlaylist) listView.getAdapter().getItem(position);
-            RedditDetailFragment redditDetailFragment = RedditDetailFragment.newInstance(redditEntry);
+            KhanAcademyPlaylist khanAcademyPlaylist = (KhanAcademyPlaylist) listView.getAdapter().getItem(position);
+            PlaylistDetailFragment playlistDetailFragment = PlaylistDetailFragment.newInstance(khanAcademyPlaylist);
 
             FragmentController fragmentController = (FragmentController) getActivity();
-            fragmentController.changeFragment(redditDetailFragment, true);
+            fragmentController.changeFragment(playlistDetailFragment, true);
 
         } else {
             throw new IllegalArgumentException("Your activity must implement the FragmentController interface");
@@ -85,15 +84,15 @@ public class SubredditListFragment extends ListFragment implements KhanAcademyAp
     public void onSuccess(JSONArray response) {
         if (isAdded()) {
             List<KhanAcademyPlaylist> redditEntries = KhanAcademyJSONParser.parseJSONObject(response);
-            subredditListAdapter.clear();
-            subredditListAdapter.addAll(redditEntries);
+            searchResultsListAdapter.clear();
+            searchResultsListAdapter.addAll(redditEntries);
         }
     }
 
     @Override
     public void onError() {
         if (isAdded()) {
-            Toast.makeText(getActivity(), "Error loading Subreddit list", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Error loading search results list", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -129,12 +128,12 @@ public class SubredditListFragment extends ListFragment implements KhanAcademyAp
     }
 
     private void loadRedditEntries() {
-        String subreddit = getArguments().getString(ARG_SUBREDDIT);
+        String searchTerm = getArguments().getString(ARG_SEARCH_TERM);
 
-        if (subreddit != null) {
-            redditApi.getSubredditEntries(subreddit, this);
+        if (searchTerm != null) {
+            khanAcademyApi.getSubredditEntries(searchTerm, this);
         } else {
-            throw new IllegalStateException("Must supply a subreddit to SubredditListFragment");
+            throw new IllegalStateException("Must supply a search term to SearchResultsListFragment");
         }
     }
 }

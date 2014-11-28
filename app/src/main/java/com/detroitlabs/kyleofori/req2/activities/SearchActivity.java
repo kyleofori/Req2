@@ -10,14 +10,14 @@ import android.widget.Toast;
 
 import com.detroitlabs.kyleofori.req2.R;
 
-public class SubredditActivity extends Activity implements View.OnClickListener {
+public class SearchActivity extends Activity implements View.OnClickListener {
 
     private EditText subredditEntry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_subreddit);
+        setContentView(R.layout.activity_search);
 
         subredditEntry = (EditText) findViewById(R.id.subredditEntry);
 
@@ -45,8 +45,8 @@ public class SubredditActivity extends Activity implements View.OnClickListener 
     }
 
     private void openRedditNavigationActivity(String subredditEntryText) {
-        Intent startRedditNavigationActivity = new Intent(this, RedditNavigationActivity.class);
-        startRedditNavigationActivity.putExtra(RedditNavigationActivity.EXTRA_SUBREDDIT, subredditEntryText);
+        Intent startRedditNavigationActivity = new Intent(this, KhanAcademyNavigationActivity.class);
+        startRedditNavigationActivity.putExtra(KhanAcademyNavigationActivity.EXTRA_SUBREDDIT, subredditEntryText);
         startActivity(startRedditNavigationActivity);
     }
 }
