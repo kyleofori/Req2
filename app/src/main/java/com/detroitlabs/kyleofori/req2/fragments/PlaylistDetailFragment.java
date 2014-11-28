@@ -15,12 +15,12 @@ import com.detroitlabs.kyleofori.req2.models.KhanAcademyPlaylist;
  */
 public class PlaylistDetailFragment extends Fragment {
 
-    private static final String ARG_REDDIT_ENTRY = "arg_reddit_entry";
+    private static final String ARG_PLAYLIST = "arg_khan_academy_playlist";
 
-    public static PlaylistDetailFragment newInstance(KhanAcademyPlaylist redditEntry) {
+    public static PlaylistDetailFragment newInstance(KhanAcademyPlaylist khanAcademyPlaylist) {
 
         Bundle args = new Bundle();
-        args.putParcelable(ARG_REDDIT_ENTRY, redditEntry);
+        args.putParcelable(ARG_PLAYLIST, khanAcademyPlaylist);
 
         PlaylistDetailFragment playlistDetailFragment = new PlaylistDetailFragment();
         playlistDetailFragment.setArguments(args);
@@ -45,7 +45,7 @@ public class PlaylistDetailFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        KhanAcademyPlaylist khanAcademyPlaylist = getArguments().getParcelable(ARG_REDDIT_ENTRY);
+        KhanAcademyPlaylist khanAcademyPlaylist = getArguments().getParcelable(ARG_PLAYLIST);
 
         if (khanAcademyPlaylist != null) {
 
@@ -54,7 +54,7 @@ public class PlaylistDetailFragment extends Fragment {
             descriptionTextView.setText(khanAcademyPlaylist.getDescription());
 
         } else {
-            throw new IllegalStateException("Must supply a RedditEntry to RedditDetailFragment");
+            throw new IllegalStateException("Must supply a KhanAcademyPlaylist to PlaylistDetailFragment");
         }
     }
 }
