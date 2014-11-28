@@ -45,13 +45,13 @@ public class PlaylistDetailFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        KhanAcademyPlaylist redditEntry = getArguments().getParcelable(ARG_REDDIT_ENTRY);
+        KhanAcademyPlaylist khanAcademyPlaylist = getArguments().getParcelable(ARG_REDDIT_ENTRY);
 
-        if (redditEntry != null) {
+        if (khanAcademyPlaylist != null) {
 
-            titleTextView.setText(redditEntry.getTitle());
-            kaUrlTextView.setText(redditEntry.getKaUrl());
-            descriptionTextView.setText(redditEntry.getDescription());
+            titleTextView.setText(khanAcademyPlaylist.getTitle());
+            kaUrlTextView.setText(khanAcademyPlaylist.getKaUrl());
+            descriptionTextView.setText(khanAcademyPlaylist.getDescription());
 
         } else {
             throw new IllegalStateException("Must supply a RedditEntry to RedditDetailFragment");
